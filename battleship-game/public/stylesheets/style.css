@@ -1,3 +1,14 @@
+
+.container {
+  width: 80%; 
+  display: block;
+  overflow: auto;
+  margin: auto;
+  padding: 10%; 
+  padding-top: 2%;
+  background-color: rgb(77, 77, 77)
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -5,4 +16,14 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+.logo {
+  background-image: url("/Users/evester/Desktop/Schakeljaar/GITTIT/Web and Database Technology/Battleship/images/Logo Battleship.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 5%;
+  height: 150px;
+  width: 100%;
+  background-position: top;
 }
