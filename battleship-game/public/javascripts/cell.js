@@ -1,12 +1,16 @@
-function cell(x, y){
-    this.x = x;
-    this.y = y;
-    this.getx = function(){ return this.x; };
-    this.setx = function(x){ this.x = x; };
-    this.gety = function(){ return this.y; };
-    this.sety = function(y){ this.y = y; };
+/**
+ * Cell constructor
+ * @param pos
+ * @param ship in this position
+ * @constructor
+ */
+BattleShip.Cell = function(pos, ship) {
+    this.pos = pos;
+    this.ship = ship;
 
-    var isWater = false;
-    var isClicked = false;
-    var isHIT = false;
+    /**
+     * Is cell fired?
+     * @type {boolean}
+     */
+    this.isFired = false;
 }
