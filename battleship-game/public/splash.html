@@ -5,10 +5,13 @@
 <html>
     <head>
         <title>BattleShips: a two player war game</title>
+        <link rel="stylesheet" href="stylesheets/style.css">
         <link rel="stylesheet" href="stylesheets/splash.css">
     </head>
     <body>
         <main>
+            <section class= "container">
+            <div class ="logo"></div>
             <section id="left">
                 <div id="boats">
                     <div id="boat1"></div>
@@ -120,16 +123,17 @@
                     <div id="I10" class="middlegrid"></div>
                     <div id="J10" class="middlegrid"></div>
                 </section>
-            <section id="right">
-                <form action="/play" method="get">
-                    <button type="submit">PLAY</button>
-                </form>
-                <form action="/invite" method="get">
-                    <button type="submit">INVITE</button>
-                </form>
-                <form action="/rotate" method="get">
-                    <button type="submit">ROTATE</button>
-                </form>
+                <section id="right">
+                    <form action="/play" method="get">
+                        <button class= "button" type="submit">PLAY</button>
+                    </form>
+                    <form action="/invite" method="get">
+                        <button class= "button" type="submit">INVITE</button>
+                    </form>
+                    <form action="/rotate" method="get">
+                        <button class= "button" type="submit">ROTATE</button>
+                    </form>
+                </section>
             </section>
         </main>
     </body>

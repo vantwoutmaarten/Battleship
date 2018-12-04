@@ -6,7 +6,8 @@
   margin: auto;
   padding: 10%; 
   padding-top: 2%;
-  background-color: rgb(77, 77, 77)
+  background-color: rgb(77, 77, 77);
+  border: 3px solid black;
 }
 
 body {
