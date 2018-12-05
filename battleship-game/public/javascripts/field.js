@@ -39,4 +39,3 @@ BattleShip.Ship.prototype = {
     }
 }
 
-
