@@ -1,5 +1,6 @@
-function battleship(cellarray, length, status){
-        this.length = length;
-        this.cellarray = cellarray;
-        this.status = {"damaged":1, "killed":2, "missed":3}
-}
+/**
+ * Global Namespace
+ */
+var BattleShip = {};
+
+window.BattleShip = BattleShip;
