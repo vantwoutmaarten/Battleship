@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--    Note: this file is not in use any longer, it is superseded by splash.ejs which
+        is an almost exact copy (apart from template tags).
+-->
+<html>
+    <head>
+        <title>BattleShips: a two player war game</title>
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="stylesheet" href="stylesheets/splash.css">
+    </head>
+    <body>
+        <main>
+            <section class= "container">
+            <div class ="logo"></div>
+            <section id="left">
+                <div id="boats">
+                    <div id="boat1"></div>
+                    <div id="boat2"></div>
+                    <div id="boat3"></div>
+                    <div id="boat4"></div>
+                    <div id="boat5"></div>
+                </div>
+            </section>
+            <section id="gridright">
+                <div id="0|0" class="water"></div>
+                <div id="1|0" class="water"></div>
+                <div id="2|0" class="water"></div>
+                <div id="3|0" class="water"></div>
+                <div id="4|0" class="water"></div>
+                <div id="5|0" class="water"></div>
+                <div id="6|0" class="water"></div>
+                <div id="7|0" class="water"></div>
+                <div id="8|0" class="water"></div>
+                <div id="9|0" class="water"></div>
+                <div id="0|1" class="water"></div>
+                <div id="1|1" class="water"></div>
+                <div id="2|1" class="water"></div>
+                <div id="3|1" class="water"></div>
+                <div id="4|1" class="water"></div>
+                <div id="5|1" class="water"></div>
+                <div id="6|1" class="water"></div>
+                <div id="7|1" class="water"></div>
+                <div id="8|1" class="water"></div>
+                <div id="9|1" class="water"></div>
+                <div id="0|2" class="water"></div>
+                <div id="1|2" class="water"></div>
+                <div id="2|2" class="water"></div>
+                <div id="3|2" class="water"></div>
+                <div id="4|2" class="water"></div>
+                <div id="5|2" class="water"></div>
+                <div id="6|2" class="water"></div>
+                <div id="7|2" class="water"></div>
+                <div id="8|2" class="water"></div>
+                <div id="9|2" class="water"></div>
+                <div id="0|3" class="water"></div>
+                <div id="1|3" class="water"></div>
+                <div id="2|3" class="water"></div>
+                <div id="3|3" class="water"></div>
+                <div id="4|3" class="water"></div>
+                <div id="5|3" class="water"></div>
+                <div id="6|3" class="water"></div>
+                <div id="7|3" class="water"></div>
+                <div id="8|3" class="water"></div>
+                <div id="9|3" class="water"></div>
+                <div id="0|4" class="water"></div>
+                <div id="1|4" class="water"></div>
+                <div id="2|4" class="water"></div>
+                <div id="3|4" class="water"></div>
+                <div id="4|4" class="water"></div>
+                <div id="5|4" class="water"></div>
+                <div id="6|4" class="water"></div>
+                <div id="7|4" class="water"></div>
+                <div id="8|4" class="water"></div>
+                <div id="9|4" class="water"></div>
+                <div id="0|5" class="water"></div>
+                <div id="1|5" class="water"></div>
+                <div id="2|5" class="water"></div>
+                <div id="3|5" class="water"></div>
+                <div id="4|5" class="water"></div>
+                <div id="5|5" class="water"></div>
+                <div id="6|5" class="water"></div>
+                <div id="7|5" class="water"></div>
+                <div id="8|5" class="water"></div>
+                <div id="9|5" class="water"></div>
+                <div id="0|6" class="water"></div>
+                <div id="1|6" class="water"></div>
+                <div id="2|6" class="water"></div>
+                <div id="3|6" class="water"></div>
+                <div id="4|6" class="water"></div>
+                <div id="5|6" class="water"></div>
+                <div id="6|6" class="water"></div>
+                <div id="7|6" class="water"></div>
+                <div id="8|6" class="water"></div>
+                <div id="9|6" class="water"></div>
+                <div id="0|7" class="water"></div>
+                <div id="1|7" class="water"></div>
+                <div id="2|7" class="water"></div>
+                <div id="3|7" class="water"></div>
+                <div id="4|7" class="water"></div>
+                <div id="5|7" class="water"></div>
+                <div id="6|7" class="water"></div>
+                <div id="7|7" class="water"></div>
+                <div id="8|7" class="water"></div>
+                <div id="9|7" class="water"></div>
+                <div id="0|8" class="water"></div>
+                <div id="1|8" class="water"></div>
+                <div id="2|8" class="water"></div>
+                <div id="3|8" class="water"></div>
+                <div id="4|8" class="water"></div>
+                <div id="5|8" class="water"></div>
+                <div id="6|8" class="water"></div>
+                <div id="7|8" class="water"></div>
+                <div id="8|8" class="water"></div>
+                <div id="9|8" class="water"></div>
+                <div id="0|9" class="water"></div>
+                <div id="1|9" class="water"></div>
+                <div id="2|9" class="water"></div>
+                <div id="3|9" class="water"></div>
+                <div id="4|9" class="water"></div>
+                <div id="5|9" class="water"></div>
+                <div id="6|9" class="water"></div>
+                <div id="7|9" class="water"></div>
+                <div id="8|9" class="water"></div>
+                <div id="9|9" class="water"></div>
+                </section>
+                <section id="right">
+                    <form action="/play" method="get">
+                        <button class= "button" type="submit">PLAY</button>
+                    </form>
+                    <form action="/invite" method="get">
+                        <button class= "button" type="submit">INVITE</button>
+                    </form>
+                    <form action="/rotate" method="get">
+                        <button class= "button" type="submit">ROTATE</button>
+                    </form>
+                </section>
+            </section>
+        </main>
+    </body>
+</html>

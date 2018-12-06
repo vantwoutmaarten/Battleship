@@ -20,7 +20,7 @@ a {
 }
 
 .logo {
-  background-image: url("/Users/evester/Desktop/Schakeljaar/GITTIT/Web and Database Technology/Battleship/images/Logo Battleship.jpg");
+  background-image: url("../images/Logo Battleship.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   margin-bottom: 5%;
@@ -28,3 +28,44 @@ a {
   width: 100%;
   background-position: top;
 }
+
+
+.water{
+  background-color: rgba(77,77,77);
+  border: 1px solid rgba(179,182,255);
+  padding: 40%;
+}
+
+.miss{
+  background-image: url("../images/mis.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: rgba(77,77,77);
+  border: 1px solid rgba(179,182,255);
+  background-position: top;
+}
+
+.liveship{
+  background-color: rgb(194, 18, 18);
+  border: 3px solid rgba(4,51,255);
+}
+
+
+.hit{
+  border: 1px solid rgba(179,182,255);
+  background-color: rgba(77,77,77);
+  background-image: url("../images/Hit.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+}
+
+.killed{
+  background-image: url("../images/Hit.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 3px solid rgba(4,51,255);
+  background-position: top;
+  background-color: rgb(194, 18, 18);
+}
+

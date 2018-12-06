@@ -1,15 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
+
+/* Test */
+//router.get('/', (req,res) => res.send('Hello World'));
+
 /* GET home page. */
-router.get('/splash', function(req, res) {
-  res.render('splash.html', { title: 'Express' });
+router.get('/', function(req, res) {
+  res.render('splash', { title: 'Express' });
 });
 
 
 /* Pressing Play gives this page */ 
-router.get('/game.html', function(req, res) {
-  res.render('game.html', { title: 'Express' });
+router.get('/game', function(req, res) {
+  res.render('game', { title: 'Express' });
 });
 
 module.exports = router;

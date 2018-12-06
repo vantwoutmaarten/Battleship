@@ -1,4 +1,4 @@
-#middlegrid {
+#gridright {
     display: grid;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     background-color: rgba(179,182,255);
@@ -8,13 +8,7 @@
     margin-left: 27.5%;
     
   }
-  .middlegrid {
-    background-color: rgba(77,77,77);
-    border: 1px solid rgba(179,182,255);
-    padding: 40%;
-    font-size: 30px;
-    text-align: center;
-  }
+  
 
   #right {
       float:right; 
