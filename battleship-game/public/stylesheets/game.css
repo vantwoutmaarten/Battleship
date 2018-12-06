@@ -7,13 +7,7 @@
     width: 45%;
     
   }
-  .battlegridleft {
-    background-color: rgba(77,77,77);
-    border: 1px solid rgba(179,182,255);
-    padding: 40%;
-    font-size: 30px;
-    text-align: center;
-  }
+
 
   #gridright {
     display: grid;
@@ -24,10 +18,4 @@
     width: 45%;
    
   }
-  .battlegridright {
-    background-color: rgba(77,77,77);
-    border: 1px solid rgba(179,182,255);
-    padding: 40%;
-    font-size: 30px;
-    text-align: center;
-  }
+ 
