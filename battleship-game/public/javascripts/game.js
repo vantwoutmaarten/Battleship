@@ -1,15 +1,23 @@
 'use strict';
+jQuery(function($) {
+    var game = new BattleShip.Game(1);
+    game.start();
+});
 /**
  * Game constructor
  * @param {jQuery obj} player1Container
  * @param {jQuery obj} player2Container
  * @param {jQuery obj} gameStatusContainer
  */ 
-BattleShip.Game = function( player1Container, player2Container, gameStatusContainer) {
+BattleShip.Game = function(gameID) {
+        this.playerA = null;
+        this.playerB = null;
+        this.id = gameID;
+        this.players = 0;
 
-    this.player1Container = player1Container;
-    this.player2Container = player2Container;
-    this.gameStatusContainer = gameStatusContainer;
+    this.player1Container = $('#gridleft');
+    this.player2Container = $('#gridright');
+    this.gameStatusContainer = $('.game-status');
     this.fieldWidth = 10;
     this.fieldHeight = 10;
     /**
@@ -22,6 +30,9 @@ BattleShip.Game = function( player1Container, player2Container, gameStatusContai
      * @type {BattleShip.Field}
      */
     this.player2Field;
+
+    this.player1turn = true;
+    this.player2turn = false;
 }
 /**
  * Game methods
@@ -35,6 +46,21 @@ BattleShip.Game.prototype = {
         this.initPlayer2Field();
         $(this.gameStatusContainer).text("User turn");
     },
+   
+    addPlayer: function(p) {
+        console.log(players);
+        players++;
+        console.log(players);
+        if (this.playerA == null) {
+            this.playerA = p;
+            return "A";
+        }
+        else {
+            this.playerB = p;
+            return "B";
+        }
+    },
+
     /**
      * Init player2 field
      */
@@ -61,7 +87,7 @@ BattleShip.Game.prototype = {
             $(self.gameStatusContainer).text('Game over');
             alert( "You win! Repeat that." );
             //what does this does again?
-            // location.reload();
+            location.reload();
         };
 
         this.player2Field = new BattleShip.Field (
@@ -77,18 +103,25 @@ BattleShip.Game.prototype = {
         //     var yCoordinate = this.parentNode.rowIndex;
         //     self.player2Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) );
         // });
+        var player2turn = false;
+        var player1turn = true;
 
         tableR.on('click', 'div', function() {
-            var selected = $(this).attr("id");
-            var res = selected.split("|");
+        //    if(this.player2turn == true){
 
-           var xCoordinate = parseInt(res[0]);
-           var yCoordinate = parseInt(res[1]);
-            self.player2Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) );
+                var selected = $(this).attr("id");
+                var res = selected.split("|");
+
+            var xCoordinate = parseInt(res[0]);
+            var yCoordinate = parseInt(res[1]);
+                self.player2Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) );
+                this.player2turn = false;
+                this.player1turn = true;
+            // }
         });
 
         // show ships on player2 field
-        for ( var i = 0; i < this.player2Field.ships.length; i++ ) {
+        for ( var i = 0; i < this.player2Field.ships.length; i++ ) {        
             var shipPositions = this.player2Field.ships[i].getPositions();
             for ( var j = 0; j < shipPositions.length; j++ ) {
                 var pos = shipPositions[j];
@@ -116,7 +149,7 @@ BattleShip.Game.prototype = {
             $(self.gameStatusContainer).text("User turn");
             var s1 = "#"+ pos.x + "\\|" + pos.y;
             tableL.find(s1).addClass('miss').removeClass('water');
-    console.log("hello");
+            console.log("hello");
         }
 
         var onShipDamagedHandler = function(pos) {
@@ -127,11 +160,11 @@ BattleShip.Game.prototype = {
             self.markShipDied( tableL, shipPositions );
             self.markAroundShipDied( tableL, shipPositions );
         }
-
+        
         var onPlayer1LostHandler = function() {
             $(self.gameStatusContainer).text('Game over');
             alert( "You lose. Repeat that." );
-    //         location.reload();
+            location.reload();
         };
 
         this.player1Field = new BattleShip.Field (
@@ -151,16 +184,20 @@ BattleShip.Game.prototype = {
                 tableL.find(s1).addClass('liveship').removeClass('water');
             }
         }
-
-        tableL.on('click', 'div', function() {
+        
+    tableL.on('click', 'div', function() {
+     //   if(this.player1turn == true){
+         console.log((this.player1turn));
             var selected = $(this).attr("id");
             var res = selected.split("|");
 
            var xCoordinate = parseInt(res[0]);
            var yCoordinate = parseInt(res[1]);
             self.player1Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) );
+            this.player1turn = false;
+            this.player2turn = true;
+       //     }
         });
-
     },
 
 
@@ -171,7 +208,7 @@ BattleShip.Game.prototype = {
      */
     markShipDamaged: function(table, pos) {
         var s1 = "#"+ pos.x + "\\|" + pos.y;
-        table.find(s1).removeClass('miss').addClass('hit');
+        table.find(s1).removeClass('liveship').addClass('hit');
     },
 
     /**
@@ -182,8 +219,7 @@ BattleShip.Game.prototype = {
     markShipDied: function(table, shipPositions) {
         for ( var i = 0; i < shipPositions.length; i++ ) {
             var s1 = "#"+ shipPositions[i].x + "\\|" + shipPositions[i].y;
-            table.find(s1).removeClass('miss').addClass('killed');
-            // table.find('tr').eq(shipPositions[i].y).find('td').eq(shipPositions[i].x).removeClass('miss').addClass('killed');
+            table.find(s1).removeClass('hit').addClass('killed').removeClass('liveship');
         }
     },
 
@@ -197,9 +233,8 @@ BattleShip.Game.prototype = {
             for ( var x = shipPositions[i].x - 1; x <= shipPositions[i].x + 1; x++ ) {
                 for ( var y = shipPositions[i].y - 1; y <= shipPositions[i].y + 1; y++ ) {
                     if ( x >= 0 && y >= 0 ) {
-                        var s1 = "#"+ shipPositions[i].x + "\\|" + shipPositions[i].y;
-                        table.find(s1).addClass('liveship').removeClass('water');
-                        // table.find('tr').eq(y).find('td').eq(x).addClass('miss');
+                        var s1 = "#"+ x + "\\|" + y;
+                        table.find(s1).addClass('killed').removeClass('water');
                     }
                 }
             }
