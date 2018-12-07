@@ -36,6 +36,10 @@ a {
   padding: 40%;
 }
 
+.water:hover {
+  background-color: rgba(44, 226, 105, 0.842);
+}
+
 .miss{
   background-image: url("../images/mis.png");
   background-repeat: no-repeat;
@@ -43,11 +47,13 @@ a {
   background-color: rgba(77,77,77);
   border: 1px solid rgba(179,182,255);
   background-position: top;
+  padding: 40%;
 }
 
 .liveship{
   background-color: rgb(194, 18, 18);
   border: 3px solid rgba(4,51,255);
+  padding: 40%;
 }
 
 
@@ -58,6 +64,8 @@ a {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top;
+  padding: 40%;
+  border: 1px solid rgba(179,182,255);
 }
 
 .killed{
@@ -67,5 +75,6 @@ a {
   border: 3px solid rgba(4,51,255);
   background-position: top;
   background-color: rgb(194, 18, 18);
+  padding: 40%;
 }
 
