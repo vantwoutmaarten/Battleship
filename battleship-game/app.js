@@ -37,8 +37,6 @@ var users = 0;
 const wss = new websocket.Server({ server });
 
 
-
-
 wss.on("connection", function(ws) {  // new connection
    users++;
    console.log("Number of connections: " + users); 
@@ -50,7 +48,7 @@ wss.on("connection", function(ws) {  // new connection
 
     setInterval(
       () => ws.send(`${new Date()}`),
-      1000
+      8000
     )
 });
 

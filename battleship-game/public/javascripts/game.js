@@ -3,6 +3,19 @@ jQuery(function($) {
     var game = new BattleShip.Game(1);
     game.start();
 });
+
+var ws = new WebSocket("ws://localhost:3000");
+    // event emmited when connected
+    ws.onopen = function () {
+        console.log('websocket is connected ...')
+        // sending a send event to websocket server
+        ws.send('connected')
+    }
+    // event emmited when receiving message 
+    ws.onmessage = function (ev) {
+        console.log(ev);
+    }
+    
 /**
  * Game constructor
  * @param {jQuery obj} player1Container
@@ -108,7 +121,7 @@ BattleShip.Game.prototype = {
 
         tableR.on('click', 'div', function() {
         //    if(this.player2turn == true){
-
+            ws.send('this player1 shooting/player2 gets shot');
                 var selected = $(this).attr("id");
                 var res = selected.split("|");
 
@@ -187,7 +200,8 @@ BattleShip.Game.prototype = {
         
     tableL.on('click', 'div', function() {
      //   if(this.player1turn == true){
-         console.log((this.player1turn));
+        ws.send('this player2 shooting/player1 gets shot');
+
             var selected = $(this).attr("id");
             var res = selected.split("|");
 
@@ -209,6 +223,8 @@ BattleShip.Game.prototype = {
     markShipDamaged: function(table, pos) {
         var s1 = "#"+ pos.x + "\\|" + pos.y;
         table.find(s1).removeClass('liveship').addClass('hit');
+        ws.send('this ship is damaged');
+
     },
 
     /**
@@ -221,6 +237,7 @@ BattleShip.Game.prototype = {
             var s1 = "#"+ shipPositions[i].x + "\\|" + shipPositions[i].y;
             table.find(s1).removeClass('hit').addClass('killed').removeClass('liveship');
         }
+        ws.send('this ship died');
     },
 
     /**
@@ -239,5 +256,6 @@ BattleShip.Game.prototype = {
                 }
             }
         }
+        ws.send('markships Around died');
     }
 }
