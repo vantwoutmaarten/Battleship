@@ -1,15 +1,23 @@
 'use strict';
+jQuery(function($) {
+    var game = new BattleShip.Game(1);
+    game.start();
+});
 /**
  * Game constructor
  * @param {jQuery obj} player1Container
  * @param {jQuery obj} player2Container
  * @param {jQuery obj} gameStatusContainer
  */ 
-BattleShip.Game = function( player1Container, player2Container, gameStatusContainer) {
+BattleShip.Game = function(gameID) {
+        this.playerA = null;
+        this.playerB = null;
+        this.id = gameID;
+        this.players = 0;
 
-    this.player1Container = player1Container;
-    this.player2Container = player2Container;
-    this.gameStatusContainer = gameStatusContainer;
+    this.player1Container = $('#gridleft');
+    this.player2Container = $('#gridright');
+    this.gameStatusContainer = $('.game-status');
     this.fieldWidth = 10;
     this.fieldHeight = 10;
     /**
@@ -38,6 +46,21 @@ BattleShip.Game.prototype = {
         this.initPlayer2Field();
         $(this.gameStatusContainer).text("User turn");
     },
+   
+    addPlayer: function(p) {
+        console.log(players);
+        players++;
+        console.log(players);
+        if (this.playerA == null) {
+            this.playerA = p;
+            return "A";
+        }
+        else {
+            this.playerB = p;
+            return "B";
+        }
+    },
+
     /**
      * Init player2 field
      */
@@ -85,6 +108,7 @@ BattleShip.Game.prototype = {
 
         tableR.on('click', 'div', function() {
         //    if(this.player2turn == true){
+
                 var selected = $(this).attr("id");
                 var res = selected.split("|");
 
@@ -93,7 +117,7 @@ BattleShip.Game.prototype = {
                 self.player2Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) );
                 this.player2turn = false;
                 this.player1turn = true;
-         //   }
+            // }
         });
 
         // show ships on player2 field
