@@ -1,19 +1,23 @@
-'use strict';
-jQuery(function($) {
-    var game = new BattleShip.Game(1);
-    game.start();
-});
+
+//jQuery(function($) {
+ //   var game = new BattleShip.Game(1);
+//game.start();
+//});
+
+
+
 
 var ws = new WebSocket("ws://localhost:3000");
     // event emmited when connected
     ws.onopen = function () {
         console.log('websocket is connected ...')
         // sending a send event to websocket server
-        ws.send('connected')
+        ws.send(JSON.stringify({ 'ready': 'true', 'player': 'A' }));
     }
     // event emmited when receiving message 
     ws.onmessage = function (ev) {
-        console.log(ev);
+        var game = new BattleShip.Game(1);
+        game.start();
     }
     
 /**
@@ -127,7 +131,7 @@ BattleShip.Game.prototype = {
 
             var xCoordinate = parseInt(res[0]);
             var yCoordinate = parseInt(res[1]);
-                self.player2Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) );
+                self.player2Field.makeShot( new BattleShip.Position( xCoordinate, yCoordinate ) ); // dit moeten we sturen naar de server, en dan weer naar de andere player;
                 this.player2turn = false;
                 this.player1turn = true;
             // }
