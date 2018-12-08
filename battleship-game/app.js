@@ -6,6 +6,13 @@ var logger = require('morgan');
 var http = require('http'); 
 var websocket = require("ws");
 
+//var BattleShip = require("./public/javascripts/battleship");
+//var Game = require("./public/javascripts/game");
+
+
+
+
+
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 
@@ -36,20 +43,112 @@ app.use('/', indexRouter);
 var users = 0;
 const wss = new websocket.Server({ server });
 
+var websockets = {};//property: websocket, value: game
+var connectionID = 0;//each websocket receives a unique ID
+
+
+//GAMEE
+var Game = function (gameID) {
+  this.playerA = null;
+  this.playerB = null;
+  this.id = gameID;
+  this.players = 0;
+
+};
+
+
+Game.prototype = {
+  /**
+   * Start
+   */
+  start: function() {
+      this.initPlayer1Field();
+      this.initPlayer2Field();
+      $(this.gameStatusContainer).text("User turn");
+  },
+ 
+  addPlayer: function(p) {
+      console.log(this.players);
+      this.players++;
+      console.log(this.players);
+      if (this.playerA == null) {
+          this.playerA = p;
+          return "A";
+      }
+      else {
+          this.playerB = p;
+          return "B";
+      }
+  }
+}
+
+
+
+var currentGame = new Game(0);
 
 wss.on("connection", function(ws) {  // new connection
+  
+  //game.start();
+ // var currentGame = new Game(gameStatus.gamesInitialized++);
+   
+  let con = ws; 
+  con.id = connectionID++;
+  let playerType = currentGame.addPlayer(con);
+  websockets[con.id] = currentGame;
+
+  console.log("Player %s placed in game %s as %s", con.id, currentGame.id, playerType);
+
    users++;
    console.log("Number of connections: " + users); 
-    //let's slow down the server response time a bit to make the change visible on the client side
   
-    ws.on("message", function incoming(message) {
-        console.log("[LOG] " + message);
-    });
 
-    setInterval(
-      () => ws.send(`${new Date()}`),
-      8000
-    )
+   if(currentGame.players == 2) {
+    //game.start();
+    console.log('we have 2 players, lets start!');
+    ws.send('Hello');
+   }
+  
+    //ws.on("message", function incoming(message) {
+   //     console.log("[LOG] " + message);
+    //});
+
+    ws.on("message", function incoming(message) {
+      console.log("[LOG] " + message);
+         //create a JSON object
+         //var msg = JSON.parse(message);
+         let gameObj = websockets[con.id];
+         let isPlayerA = (gameObj.playerA == con) ? true : false;
+       
+         if (isPlayerA) {
+           console.log("player A send a messsage"); 
+           /*
+             * player A: What move?
+             
+            if(msg.type == messages.T_MAKE_A_GUESS){
+              gameObj.playerB.send(message);
+              gameObj.setStatus("CHAR GUESSED");
+          }*/
+
+                 
+
+         }else {
+          console.log("player B send a messsage"); 
+            /*
+             * player B: What move?
+              
+            if(msg.type == messages.T_MAKE_A_GUESS){
+              gameObj.playerA.send(message);
+              gameObj.setStatus("CHAR GUESSED");
+          }       */    
+
+         }
+
+
+         console.log("hello");
+      });
+   
+
+  
 });
 
 
