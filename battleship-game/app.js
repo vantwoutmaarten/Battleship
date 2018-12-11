@@ -116,7 +116,7 @@ wss.on("connection", function(ws) {  // new connection
   
 
    if(currentGame.players == 2) {
-   // game.start();
+    //game.start();
     console.log('we have 2 players, lets start!');
     ws.send('Hello');
    }
@@ -125,9 +125,9 @@ wss.on("connection", function(ws) {  // new connection
    //     console.log("[LOG] " + message);
     //});
 
-    ws.onmessage = function(event) {
+    ws.onmessage = function(message) {
 
-     // let incomingMsg = JSON.parse(event.data);
+      // let incomingMsg = JSON.parse(event.data);
      //   console.log(incomingMsg.data);
      //   set player type
      //   if (incomingMsg.type == messages.T_PLAYER_TYPE) {
