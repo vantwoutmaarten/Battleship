@@ -61,7 +61,7 @@ BattleShip.Game.prototype = {
     start: function() {
         this.initPlayer1Field();
         this.initPlayer2Field();
-        $(this.gameStatusContainer).text("User turn");
+        $(this.gameStatusContainer).text("It's your turn!");
     },
    
     addPlayer: function(p) {
@@ -86,7 +86,7 @@ BattleShip.Game.prototype = {
           , self = this;
 
         var onShotMissedHandler = function(pos) {
-            $(self.gameStatusContainer).text("Other turn");
+            $(self.gameStatusContainer).text("Please wait for other player.");
             var s1 = "#"+ pos.x + "\\|" + pos.y;
             tableR.find(s1).addClass('miss').removeClass('water');
         }
@@ -163,7 +163,7 @@ BattleShip.Game.prototype = {
           , self = this;
 
         var onShotMissedHandler = function(pos) {
-            $(self.gameStatusContainer).text("User turn");
+            $(self.gameStatusContainer).text("It's your turn!");
             var s1 = "#"+ pos.x + "\\|" + pos.y;
             tableL.find(s1).addClass('miss').removeClass('water');
         }
