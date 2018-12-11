@@ -8,6 +8,8 @@
   padding-top: 2%;
   background-color: rgb(77, 77, 77);
   border: 3px solid black;
+  height: 90%;
+  padding-bottom: 5%;
 }
 
 body {
@@ -19,6 +21,11 @@ a {
   color: #00B7FF;
 }
 
+
+
+
+
+
 .logo {
   background-image: url("../images/Logo Battleship.jpg");
   background-repeat: no-repeat;
@@ -27,6 +34,7 @@ a {
   height: 150px;
   width: 100%;
   background-position: top;
+  position: relative; 
 }
 
 
@@ -78,12 +86,7 @@ a {
   padding: 40%;
 }
 
-.footer{
-  width: 20%; 
-  position: absolute;
-  bottom: 2px;
-  margin-left: 29%;
-}
+
 
 a:link {
   color:rgb(108, 108, 250);
