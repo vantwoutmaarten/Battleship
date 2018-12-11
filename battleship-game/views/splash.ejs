@@ -15,12 +15,18 @@
             <section class= "container">
             <div class ="logo"></div>
             <section id="left">
-                <div id="boats">
-                    <div id="boat1"></div>
-                    <div id="boat2"></div>
-                    <div id="boat3"></div>
-                    <div id="boat4"></div>
-                    <div id="boat5"></div>
+                <div id="Greeting">
+                    <h2 id="title"></h2>
+                    
+                </div>
+                <div><h3> Welcome to our BattleShips game. In this menu you can place your ships. If you are not happy with the initial placement, click on Replace. When you are ready, click on Play. <br><br></h3></div>
+                <div>
+                    <% ses_array.forEach(function(ses) { %>
+                    <div class = "session">
+                        <h4><%=ses.title%></h4>
+                        <p><%=ses.message%></p>
+                    </div>
+                    <% }) %>
                 </div>
             </section>
             <section id="gridright">
@@ -133,9 +139,13 @@
                         <button class= "button" type="submit">INVITE</button>
                     </form>
                     <form action="/rotate" method="get">
-                        <button class= "button" type="submit">ROTATE</button>
+                        <button class= "button" type="submit">REPLACE</button>
                     </form>
                 </section>
+                <div class = "footer">
+                    <a href="https://en.wikipedia.org/wiki/Battleship" target="_blank">Read more about great battleships.</a>
+                
+                </div>
             </section>
         </main>
     </body>

@@ -78,3 +78,32 @@ a {
   padding: 40%;
 }
 
+.footer{
+  width: 20%; 
+  position: absolute;
+  bottom: 2px;
+  margin-left: 29%;
+}
+
+a:link {
+  color:rgb(108, 108, 250);
+  text-decoration: none;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgba(226, 96, 44, 0.842);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
