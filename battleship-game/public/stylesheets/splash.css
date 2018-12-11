@@ -15,9 +15,19 @@
         content: "Greetings";
       
 }  
+h2 {
+    color:white;
+}
+h3 {
+    color:white;
+}
+
+p{
+    color:white;
+}
 .session h4{
     
-color: black; 
+color: white; 
 margin-bottom: 0%;
 padding-bottom: 0%;
     
@@ -33,11 +43,23 @@ padding-bottom: 0%;
     width:15%
 }
 
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes glow {
+    from {background-color: #008CBA;}
+    to {background-color: yellow;}
+  }
+  
+  /* Standard syntax */
+  @keyframes glow {
+    from {background-color: #008CBA;}
+    to {background-color: rgba(231, 231, 103, 0.849);}
+  }
+
   .button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     background-color: rgb(0, 59, 186);
     color: white;
-    
+    font-size: 20px;
 }
 
 
@@ -52,5 +74,12 @@ padding-bottom: 0%;
     border-radius: 4px;
     display: inline-block;
     font-size: 16px;
+    -webkit-transition: font-size 0.8s; /* For Safari 3.1 to 6.0 */
+    transition: font-size 0.8s;
+    animation-name: glow;
+    animation-duration: 0.8s;
+    animation-iteration-count: 4;
+    animation-direction: alternate;
+
 }
 
