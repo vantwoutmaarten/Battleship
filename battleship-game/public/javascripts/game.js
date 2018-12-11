@@ -1,29 +1,25 @@
-
-//jQuery(function($) {
- //   var game = new BattleShip.Game(1);
-//game.start();
-//});
-
-
-
-
-
+jQuery(function($) {
+   var game = new BattleShip.Game(1);
+   console.log("game init")
+    game.start();
+    $("#rotatebutton").click(function(){
+        location.reload();
+    });
+});
 
 var ws = new WebSocket("ws://localhost:3000");
-    // event emmited when connected
-    ws.onopen = function () {
-        console.log('websocket is connected ...')
-        // sending a send event to websocket server
-       // ws.send(JSON.stringify({ 'ready': 'true', 'player': 'A' }));
-        
-       // ws.send(JSON.stringify(finalMsg));
-    }
-    // event emmited when receiving message 
-    ws.onmessage = function (ev) {
-        var game = new BattleShip.Game(1);
-        game.start();
-    }
+// event emmited when connected
+ws.onopen = function () {
+    console.log('websocket is connected ...')
+    // sending a send event to websocket server
+   // ws.send(JSON.stringify({ 'ready': 'true', 'player': 'A' }));
     
+   // ws.send(JSON.stringify(finalMsg));
+}
+// event emmited when receiving message 
+ws.onmessage = function (ev) {
+
+}
 /**
  * Game constructor
  * @param {jQuery obj} player1Container
@@ -143,6 +139,9 @@ BattleShip.Game.prototype = {
             // }
         });
 
+        
+    
+
         // show ships on player2 field
         for ( var i = 0; i < this.player2Field.ships.length; i++ ) {        
             var shipPositions = this.player2Field.ships[i].getPositions();
@@ -151,12 +150,7 @@ BattleShip.Game.prototype = {
                 var s1 = "#"+ pos.x + "\\|" + pos.y;
                 tableR.find(s1).addClass('liveship').removeClass('water');
             }
-        }
-
-
-        // $("#gridright").children("div").click(function(){
-        //         //if top one does not work this is a alternative;
-        // });
+        };
 
     },
 
@@ -172,7 +166,6 @@ BattleShip.Game.prototype = {
             $(self.gameStatusContainer).text("User turn");
             var s1 = "#"+ pos.x + "\\|" + pos.y;
             tableL.find(s1).addClass('miss').removeClass('water');
-            console.log("hello");
         }
 
         var onShipDamagedHandler = function(pos) {
@@ -237,6 +230,8 @@ BattleShip.Game.prototype = {
         ws.send('this ship is damaged');
 
     },
+
+ 
 
     /**
      * Color died cell
