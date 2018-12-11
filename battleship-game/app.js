@@ -5,16 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http = require('http'); 
 var websocket = require("ws");
+var messages = require("./public/javascripts/messages");
 
 //var BattleShip = require("./public/javascripts/battleship");
 //var Game = require("./public/javascripts/game");
 
-
-
-
-
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -87,7 +83,7 @@ Game.prototype = {
 var currentGame = new Game(0);
 
 wss.on("connection", function(ws) {  // new connection
-  
+  ws.send(messages.S_PLAYER_A);
   //game.start();
  // var currentGame = new Game(gameStatus.gamesInitialized++);
    
@@ -103,7 +99,7 @@ wss.on("connection", function(ws) {  // new connection
   
 
    if(currentGame.players == 2) {
-    //game.start();
+    game.start();
     console.log('we have 2 players, lets start!');
     ws.send('Hello');
    }
@@ -112,8 +108,16 @@ wss.on("connection", function(ws) {  // new connection
    //     console.log("[LOG] " + message);
     //});
 
-    ws.on("message", function incoming(message) {
-      console.log("[LOG] " + message);
+    ws.onmessage = function(event) {
+
+     // let incomingMsg = JSON.parse(event.data);
+     //   console.log(incomingMsg.data);
+     //   set player type
+     //   if (incomingMsg.type == messages.T_PLAYER_TYPE) {
+     //       console.log("Succes");
+     //   }
+
+         console.log("[LOG] " + message);
          //create a JSON object
          //var msg = JSON.parse(message);
          let gameObj = websockets[con.id];
@@ -145,7 +149,7 @@ wss.on("connection", function(ws) {  // new connection
 
 
          console.log("hello");
-      });
+      };
    
 
   
