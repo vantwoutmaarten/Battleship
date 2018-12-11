@@ -6,6 +6,9 @@ var logger = require('morgan');
 var http = require('http'); 
 var websocket = require("ws");
 var messages = require("./public/javascripts/messages");
+var credentials = require("./credentials");
+var cookies = require("cookie-parser");
+var sessions = require("express-session")
 
 //var BattleShip = require("./public/javascripts/battleship");
 //var Game = require("./public/javascripts/game");
@@ -14,12 +17,26 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+
+//ADDING COOKIES
+app.use(cookies(credentials.cookieSecret));
+var sessionConfiguration = {
+	// Code is slightly adjusted to avoid deprecation warnings when running the code.
+	secret: credentials.cookieSecret,
+	resave: false,
+	saveUninitialized: true,
+};
+app.use(sessions(sessionConfiguration));
+
+
+
 // setting up server
 var port = 3000; 
 var server = http.createServer(app);
 
 //Static Path
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // view engine setup
 //
@@ -99,7 +116,7 @@ wss.on("connection", function(ws) {  // new connection
   
 
    if(currentGame.players == 2) {
-    game.start();
+   // game.start();
     console.log('we have 2 players, lets start!');
     ws.send('Hello');
    }
@@ -146,9 +163,6 @@ wss.on("connection", function(ws) {  // new connection
           }       */    
 
          }
-
-
-         console.log("hello");
       };
    
 
