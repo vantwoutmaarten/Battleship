@@ -8,7 +8,8 @@
         <link rel="stylesheet" href="stylesheets/style.css">
         <link rel="stylesheet" href="stylesheets/splash.css">
 
-        <script src="javascripts/sockets.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     </head>
     <body>
         <main>
@@ -132,11 +133,17 @@
                     <form action="/invite" method="get">
                         <button class= "button" type="submit">INVITE</button>
                     </form>
-                    <form action="/rotate" method="get">
-                        <button class= "button" type="submit">ROTATE</button>
-                    </form>
+                        <button class= "button" id="rotatebutton" type="submit">ROTATE</button>
                 </section>
             </section>
         </main>
+        <script src="javascripts/battleship.js"></script>
+        <script src="javascripts/cell.js"></script>
+        <script src="javascripts/field.js"></script>
+        <script src="javascripts/game.js"></script>
+        <script src="javascripts/position.js"></script>
+        <script src="javascripts/shipsinfo.js"></script>
+        <script src="javascripts/shotstatus.js"></script>
+        <!-- <script src="javascripts/sockets.js"></script> -->
     </body>
 </html>
