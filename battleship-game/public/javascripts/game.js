@@ -7,12 +7,16 @@
 
 
 
+
+
 var ws = new WebSocket("ws://localhost:3000");
     // event emmited when connected
     ws.onopen = function () {
         console.log('websocket is connected ...')
         // sending a send event to websocket server
-        ws.send(JSON.stringify({ 'ready': 'true', 'player': 'A' }));
+       // ws.send(JSON.stringify({ 'ready': 'true', 'player': 'A' }));
+        
+       // ws.send(JSON.stringify(finalMsg));
     }
     // event emmited when receiving message 
     ws.onmessage = function (ev) {
@@ -126,6 +130,8 @@ BattleShip.Game.prototype = {
         tableR.on('click', 'div', function() {
         //    if(this.player2turn == true){
             ws.send('this player1 shooting/player2 gets shot');
+            //ws.send(messages.S_PLAYER_A);
+
                 var selected = $(this).attr("id");
                 var res = selected.split("|");
 
@@ -205,6 +211,7 @@ BattleShip.Game.prototype = {
     tableL.on('click', 'div', function() {
      //   if(this.player1turn == true){
         ws.send('this player2 shooting/player1 gets shot');
+       
 
             var selected = $(this).attr("id");
             var res = selected.split("|");
